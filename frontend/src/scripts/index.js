@@ -45,9 +45,7 @@ function setupSearchForm() {
                 const data = await response.json();
                 console.log('Response from server:', data);
 
-                // // Add a marker to the map
-                // const address = 'P.za del Duomo, 20122 Milano MI, Italy';
-                // addMarkerByAddress(googleMap, address);
+                renderLocationData(data.response);
 
                 input.value = '';
             }
@@ -56,6 +54,24 @@ function setupSearchForm() {
             console.error('Error while making the request:', error);
         }
     });
+}
+
+function renderLocationData(data) {
+    console.log("IS here:", data);
+
+
+    const title = document.getElementById('location_name');
+    const description = document.getElementById('location_description');
+    const reason = document.getElementById('location_reason');
+
+    if ((data.name && title) && (data.description && description) && (data.reason && reason) && data.address) {
+        title.innerHTML = data.name;
+        description.innerHTML = data.description;
+        reason.innerHTML = data.reason;
+
+        // Add a marker to the map
+        addMarkerByAddress(googleMap, data.address);
+    }
 }
 
 function initMap() {
