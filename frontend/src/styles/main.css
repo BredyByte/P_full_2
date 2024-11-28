@@ -27,9 +27,29 @@ input:focus {
 .btn {
     font-size: 14px;
     background: linear-gradient(135deg, #6a11cb, #2575fc);
-    color: #fff!important;
+    color: #fff !important;
     border: none;
     transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.location-info {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.location-info h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.location-info p {
+    font-size: 16px;
+    color: #555;
+    margin: 5px 0;
 }
 
 #map_container {
@@ -70,6 +90,14 @@ input, .btn {
     #map_container {
         height: 400px;
     }
+
+    .location-info h2 {
+        font-size: 28px;
+    }
+
+    .location-info p {
+        font-size: 18px;
+    }
 }
 
 @media (min-width: 1200px) {
@@ -87,5 +115,13 @@ input, .btn {
 
     #map_container {
         height: 500px;
+    }
+
+    .location-info h2 {
+        font-size: 32px;
+    }
+
+    .location-info p {
+        font-size: 20px;
     }
 }

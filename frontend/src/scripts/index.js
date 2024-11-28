@@ -20,21 +20,33 @@ function setupSearchForm() {
         event.preventDefault();
 
         try {
-            // const response = await fetch('/api/generateLocation', {
-            //     method: 'GET',
-            //     headers: {
-            //         'Content-Type': 'application/json'
-            //     }
-            // });
+            const input = document.getElementById('search_input');
 
-            // if (!response.ok) {
-            //     throw new Error(`Error: ${response.status} ${response.statusText}`);
-            // }
+            if (input) {
+                let inputValue = input.value;
 
-            // const data = await response.json();
-            // console.log('Response from server:', data);
-            const address = 'P.za del Duomo, 20122 Milano MI, Italy';
-            addMarkerByAddress(googleMap, address);
+                // // Make request to Gemini ai
+                // const response = await fetch('/api/generateLocation', {
+                //     method: 'GET',
+                //     headers: {
+                //         'Content-Type': 'application/json'
+                //     }
+                // });
+
+                // if (!response.ok) {
+                //     throw new Error(`Error: ${response.status} ${response.statusText}`);
+                // }
+
+                // const data = await response.json();
+                // console.log('Response from server:', data);
+
+                // // Add a marker to the map
+                // const address = 'P.za del Duomo, 20122 Milano MI, Italy';
+                // addMarkerByAddress(googleMap, address);
+
+                input.value = '';
+            }
+
         } catch (error) {
             console.error('Error while making the request:', error);
         }
@@ -42,7 +54,7 @@ function setupSearchForm() {
 }
 
 function initMap() {
-    let mapElement = document.getElementById('map');
+    const mapElement = document.getElementById('map');
 
     if (mapElement) {
         googleMap = new google.maps.Map(mapElement, {
@@ -59,7 +71,9 @@ function initMap() {
 
         googleMap.setOptions({styles: newStyle});
 
-        addMarkerByAddress(googleMap, "Av de Sor Teresa Prat, 15, Carretera de Cádiz, 29003 Málaga");
+
+        const address = 'P.za del Duomo, 20122 Milano MI, Italy';
+        addMarkerByAddress(googleMap, address);
     }
 }
 
