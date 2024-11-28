@@ -23,22 +23,27 @@ function setupSearchForm() {
             const input = document.getElementById('search_input');
 
             if (input) {
-                let inputValue = input.value;
+                let inputValue = input.value.trim();
 
-                // // Make request to Gemini ai
-                // const response = await fetch('/api/generateLocation', {
-                //     method: 'GET',
-                //     headers: {
-                //         'Content-Type': 'application/json'
-                //     }
-                // });
+                if (inputValue === '') {
+                    return;
+                }
 
-                // if (!response.ok) {
-                //     throw new Error(`Error: ${response.status} ${response.statusText}`);
-                // }
+                const response = await fetch('/api/generateLocation', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ query: inputValue })
+                });
 
-                // const data = await response.json();
-                // console.log('Response from server:', data);
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.status} ${response.statusText}`);
+                }
+
+
+                const data = await response.json();
+                console.log('Response from server:', data);
 
                 // // Add a marker to the map
                 // const address = 'P.za del Duomo, 20122 Milano MI, Italy';
